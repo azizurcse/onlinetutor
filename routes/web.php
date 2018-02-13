@@ -17,13 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 //admin group route start
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
-
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('post/create','PostsController@create')->name('post.create');
     Route::post('post/store','PostsController@store')->name('post.store');
+    Route::get('category/create','CategoriesController@create')->name('category.create');
+    Route::get('categories','CategoriesController@index')->name('categories');
+    Route::post('category/store','CategoriesController@store')->name('category.store');
 
 });
 

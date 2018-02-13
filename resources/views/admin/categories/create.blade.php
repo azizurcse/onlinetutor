@@ -16,26 +16,17 @@
                 Create new post
             </div>
             <div class="panel-body">
-                <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('category.store')}}" method="post">
                     {{csrf_field()}}
 
                     <div class="form-group">
-                        <label for="title">title</label>
-                        <input type="text" name="title" class="form-control">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label for="featured">featured image</label>
-                        <input type="file" name="featured" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="content">content</label>
-                        <textarea name="content" id="content" cols="5" rows="5" class="form-control"></textarea>
-                    </div>
-
                     <div class="form-group">
                         <div class="text-center">
                             <button class="btn btn-success">
-                                Submit Post
+                                Submit Category
                             </button>
                         </div>
                     </div>
