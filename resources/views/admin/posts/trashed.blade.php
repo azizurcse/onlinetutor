@@ -8,6 +8,7 @@
         <th>Image</th>
         <th>Title</th>
         <th>Edit</th>
+        <th>Restore</th>
         <th>Delete</th>
         </thead>
 
@@ -22,16 +23,24 @@
                     {{$post->title}}
                 </td>
                 <td>
-                    <a href="{{route('post.edit',['id'=>$post->id])}}" class="btn btn-xs btn-info">
+                    <a href="{{route('post.update',['id'=>$post->id])}}" class="btn btn-xs btn-info">
                             <span class="glyphicon glyphicon-pencil">
                                 Edit
                             </span>
                     </a>
                 </td>
                 <td>
-                    <a href="{{route('post.delete',['id'=>$post->id])}}" class="btn btn-xs btn-danger">
-                            <span class="glyphicon glyphicon-trash">
-                                Trash
+                    <a href="{{route('post.restore',['id'=>$post->id])}}" class="btn btn-xs btn-success">
+                            <span class="glyphicon glyphicon-success">
+                                Restore
+                            </span>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{{route('post.kill',['id'=>$post->id])}}" class="btn btn-xs btn-danger">
+                            <span class="glyphicon glyphicon-danger">
+                                Delete
                             </span>
                     </a>
                 </td>

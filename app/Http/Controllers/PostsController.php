@@ -88,7 +88,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post=Post::find($id);
+
+        return view('admin.posts.edit')->with('post',$post)->with('categories',Category::all());
     }
 
     /**
@@ -100,7 +102,30 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'content_post'=>'required',
+            'category_id'=>'required'
+        ]);
+
+        $post=Post::find($id);
+
+        if($request->hasFile('featured'))
+        {
+            $featured=$request->featured;
+            $featured_new_nme=time() . $featured->getClientOriginalName();
+            $featured->move('uploads/posts',$featured_new_nme);
+            $post->featured='uploads/posts/' .$featured_new_nme;
+
+        }
+
+        $post->title=$request->title;
+        $post->content_post=$request->content_post;
+        $post->category_id=$request->category_id;
+        $post->save();
+
+        Session::flash('success','Post updated successfully');
+        return redirect()->route('posts');
     }
 
     /**
@@ -111,6 +136,35 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post=Post::find($id);
+        $post->delete();
+        Session::flash('success','The post was trashed');
+        return redirect()->back();
+    }
+
+    public function trashed()
+    {
+        $posts=Post::onlyTrashed()->get();
+
+        return view('admin.posts.trashed')->with('posts',$posts);
+    }
+
+    public function kill($id)
+    {
+        $posts=Post::withTrashed()->where('id',$id)->first();
+
+        $posts->forceDelete();
+
+        Session::flash('success','Post permanently deleted');
+        return redirect()->back();
+    }
+
+    public function restore($id)
+    {
+        $post=Post::withTrashed()->where('id',$id)->first();
+
+        $post->restore();
+
+        return redirect()->route('posts');
     }
 }
