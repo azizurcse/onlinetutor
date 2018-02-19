@@ -11,29 +11,38 @@
         </thead>
 
         <tbody>
-            @foreach($categories as $category)
 
-                <tr>
-                    <td>
-                        {{$category->name}}
-                    </td>
-                    <td>
-                        <a href="{{route('category.edit',['id'=>$category->id])}}" class="btn btn-xs btn-info">
+            @if($categories->count() > 0)
+
+                @foreach($categories as $category)
+
+                    <tr>
+                        <td>
+                            {{$category->name}}
+                        </td>
+                        <td>
+                            <a href="{{route('category.edit',['id'=>$category->id])}}" class="btn btn-xs btn-info">
                             <span class="glyphicon glyphicon-pencil">
                                 Edit
                             </span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{route('category.delete',['id'=>$category->id])}}" class="btn btn-xs btn-danger">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{route('category.delete',['id'=>$category->id])}}" class="btn btn-xs btn-danger">
                             <span class="glyphicon glyphicon-trash">
                                 Delete
                             </span>
-                        </a>
-                    </td>
-                </tr>
+                            </a>
+                        </td>
+                    </tr>
 
-            @endforeach
+                @endforeach
+
+            @else
+                <tr>
+                    <th colspan="5" class="text-center">No trashed post here</th>
+                </tr>
+            @endif
         </tbody>
     </table>
 

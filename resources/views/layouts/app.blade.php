@@ -95,6 +95,12 @@
                             <li class="list-group-item">
                                 <a href="{{route('categories')}}">Category list</a>
                             </li>
+                            <li class="list-group-item">
+                                <a href="{{route('tags')}}">Tag list</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{route('tag.create')}}">Create Tag</a>
+                            </li>
                         </ul>
                     </div>
 
