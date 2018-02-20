@@ -10,7 +10,7 @@
             </ul>
         </div>
     @endif
-    <h2 class="text-center">
+    {{--<h2 class="text-center">--}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 Create new post
@@ -33,6 +33,6 @@
                 </form>
             </div>
         </div>
-    </h2>
+    {{--</h2>--}}
 
 @stop

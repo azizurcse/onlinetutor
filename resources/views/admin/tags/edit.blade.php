@@ -2,7 +2,7 @@
 
 @section('content')
     @include('admin.includes.errors')
-    <h2 class="text-center">
+    {{--<h2 class="text-center">--}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 Update Category:{{$tag->tag}}
@@ -25,6 +25,6 @@
                 </form>
             </div>
         </div>
-    </h2>
+    {{--</h2>--}}
 
 @stop

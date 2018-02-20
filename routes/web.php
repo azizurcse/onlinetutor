@@ -11,8 +11,14 @@
 |
 */
 
+use App\Post;
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test', function () {
+    return Post::find(6)->tags;
 });
 
 Auth::routes();
@@ -51,3 +57,4 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 });
 
 //admin group route end
+

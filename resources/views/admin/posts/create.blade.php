@@ -10,7 +10,7 @@
             </ul>
         </div>
     @endif
-    <h2 class="text-center">
+    {{--<h2 class="text-center">--}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 Create new post
@@ -36,6 +36,16 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="tags">Select Tags</label>
+                        @foreach($tags as $tag)
+                            <div class="checkbox">
+                                <label for=""><input type="checkbox" name="tags[]" value="{{$tag->id}}"/>{{$tag->tag}}</label>
+                            </div>
+
+
+                        @endforeach
+                    </div>
+                    <div class="form-group">
                         <label for="content">content</label>
                         <textarea name="content_post" id="content" cols="5" rows="5" class="form-control"></textarea>
                     </div>
@@ -50,6 +60,6 @@
                 </form>
             </div>
         </div>
-    </h2>
+    {{--</h2>--}}
 
 @stop
