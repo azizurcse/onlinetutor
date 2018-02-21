@@ -68,6 +68,11 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
 
 
+    Route::get('/settings','SettingsController@index')->name('settings')->middleware('admin');
+    Route::post('/settings/update','SettingsController@update')->name('settings.update')->middleware('admin');
+
+
+
 });
 
 //admin group route end
