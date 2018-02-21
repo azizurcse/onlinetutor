@@ -98,6 +98,16 @@
                             <li class="list-group-item">
                                 <a href="{{route('tags')}}">Tag list</a>
                             </li>
+                            @if(Auth::user()->admin)
+                                <li class="list-group-item">
+                                    <a href="{{route('users')}}">Users list</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{route('user.create')}}">Create user</a>
+                                </li>
+
+                            @endif
+
                             <li class="list-group-item">
                                 <a href="{{route('tag.create')}}">Create Tag</a>
                             </li>

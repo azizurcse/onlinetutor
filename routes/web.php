@@ -11,14 +11,15 @@
 |
 */
 
-use App\Post;
+
+use App\User;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/test', function () {
-    return Post::find(6)->tags;
+    return App\Profile::find(1)->user;
 });
 
 Auth::routes();
@@ -54,6 +55,16 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('tag/edit/{id}','TagsController@edit')->name('tag.edit');
     Route::post('tag/update/{id}','TagsController@update')->name('tag.update');
     Route::get('tag/delete/{id}','TagsController@destroy')->name('tag.delete');
+
+
+    Route::get('/users','UsersController@index')->name('users');
+    Route::get('/user/create','UsersController@create')->name('user.create');
+    Route::post('/user/store','UsersController@store')->name('user.store');
+    Route::get('/user/admin/{id}','UsersController@admin')->name('user.admin');
+    Route::get('/user/not-admin/{id}','UsersController@not_admin')->name('user.not.admin');
+
+
+
 });
 
 //admin group route end
