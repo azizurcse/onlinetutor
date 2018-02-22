@@ -44,16 +44,8 @@
 
     @include('includes.header')
 
-    <div class="header-spacer"></div>
 
-    <div class="container">
-
-    </div>
-
-
-    <div class="container-fluid">
-
-    </div>
+    @yield('content')
 
     <!-- Subscribe Form -->
 
