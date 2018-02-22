@@ -14,9 +14,8 @@
 
 use App\User;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','FrontEndController@index')->name('index');
+Route::get('/{slug}','FrontEndController@singlePost')->name('post.single');
 
 Route::get('/test', function () {
     return App\Profile::find(1)->user;
