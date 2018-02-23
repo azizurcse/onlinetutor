@@ -12,10 +12,24 @@
 */
 
 
+use App\Category;
+use App\Post;
+use App\Setting;
 use App\User;
 
 Route::get('/','FrontEndController@index')->name('index');
 Route::get('/post/{slug}','FrontEndController@singlePost')->name('post.single');
+Route::get('/category/{id}','FrontEndController@category')->name('category.single');
+Route::get('/tag/{id}','FrontEndController@tag')->name('tag.single');
+
+Route::get('/results', function () {
+    $posts=Post::where('title','like','%'. request('query') .'%')->get();
+    return view('results')->with('posts',$posts)
+        ->with('title','Search results: '.request('query'))
+        ->with('settings',Setting::first())
+        ->with('categories',Category::take(4)->get())
+        ->with('query',request('query'));
+})->name('results');
 
 Route::get('/test', function () {
     return App\Profile::find(1)->user;
