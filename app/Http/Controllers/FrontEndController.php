@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 use App\Setting;
+use App\Subscribe;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class FrontEndController extends Controller
 {
@@ -53,5 +55,21 @@ class FrontEndController extends Controller
             ->with('title',$tag->tag)
             ->with('settings',Setting::first())
             ->with('categories',Category::take(4)->get());
+    }
+
+    public function subscribe(Request $request)
+    {
+
+//        dd($request->all());
+//        return redirect()->back();
+        $this->validate($request,[
+            'subs_email'=>'required|email|unique:subscribes'
+        ]);
+//        dd($request->all());
+        $subscribe_user_email= new Subscribe;
+        $subscribe_user_email->subs_email=$request->subs_email;
+        $subscribe_user_email->save();
+        Session::flash('success','You successfully subscribe');
+        return redirect()->back();
     }
 }
